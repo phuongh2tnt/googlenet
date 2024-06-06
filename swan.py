@@ -102,7 +102,7 @@ if __name__ == "__main__":
     model = models.swin_t(weights='IMAGENET1K_V1', num_classes=1000)
     #fine tune vit
     num_classes = 2  # Example: for a dataset with 10 classes
-    model.heads.head = torch.nn.Linear(model.heads.head.in_features, num_classes)
+    model.heads.head = torch.nn.Linear(model.num_heads.head.in_features, num_classes)
     #----------------------------------------------------------------------
     #3.1. Create a new deep model use timm
     #model=timm.create_model('hrnet_w18', pretrained=True, num_classes=2).to('cuda')
