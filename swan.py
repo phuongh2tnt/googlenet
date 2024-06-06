@@ -98,8 +98,8 @@ if __name__ == "__main__":
     # 3. Create a new deep model with pre-trained weights
     #mo hinh transformer for image-------------------------
     import torchvision.models as models
-    from torchvision.models import ViT_B_16_Weights
-    model = models.vit_b_16(weights=ViT_B_16_Weights.DEFAULT, num_classes=1000)
+    #from torchvision.models import Swin_T_Weights
+    model = models.swin_t(weights='IMAGENET1K_V1', num_classes=1000)
     #fine tune vit
     num_classes = 2  # Example: for a dataset with 10 classes
     model.heads.head = torch.nn.Linear(model.heads.head.in_features, num_classes)
@@ -137,5 +137,5 @@ if __name__ == "__main__":
         # 4.3. Save the model if the validation accuracy is increasing
         if val_acc > max_acc:
             print(f'Validation accuracy increased ({max_acc} --> {val_acc}). Model saved')
-            torch.save(model.state_dict(),'googlenet/checkpoints/epoch_' + str(epoch) + '_acc_{0:.4f}'.format(max_acc) + '.pt')
+            torch.save(model.state_dict(),'googlenet/checkpoints/swinepoch_' + str(epoch) + '_acc_{0:.4f}'.format(max_acc) + '.pt')
             max_acc = val_acc
